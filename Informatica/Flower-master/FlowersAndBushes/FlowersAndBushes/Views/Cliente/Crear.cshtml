@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Crear";
+    Layout = "";
+}
+
+@Styles.Render("~/Content/css")
+<link rel="stylesheet" href="~/Content/Estilos.css" />
+<link rel="stylesheet" href="~/Content/bootstrap-datepicker.min.css" />
+<script type="text/javascript" src="~/scripts/jquery-3.2.1.min.js"> </script>
+<script type="text/javascript" src="~/scripts/bootstrap-datepicker.min.js"> </script>
+<br />
+
+<div class="panel panel-primary">
+    <div class="panel-heading"> Registro de Clientes</div>
+    <div class="panel-body">
+        <div id="alert_placeholder"></div>
+
+        <form id= "Formulario" role="form" action="/Home/About">
+
+            <table class="table table-striped">
+                <tr>
+                    <td>Tipo de documento</td>
+                    <td>
+                        <select class="form-control" id="tipoDocumento">
+                            <option>Cédula de ciudadanía</option>
+                            <option>Tarjeta de identidad</option>
+                            <option>NIT</option>
+                        </select>
+                    </td>
+                    <td>Número de documento</td>
+                    <td>
+                        <input type="text" class="numero form-control"  id="numeroDocumento" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Primer nombre</td>
+                    <td><input type="text" class="form-control" id="primerNombre" />
+                    <td>Segundo nombre</td>
+                    <td><input type="text" class="form-control" id="primerNombre" />
+                </tr>
+                <tr>
+                    <td>Primer apellido</td>
+                    <td><input type="text" class="form-control" id="primerApellido" />
+                    <td>Segundo apellido</td>
+                    <td><input type="text" class="form-control" id="segundoApellido" />
+                </tr>
+                <tr>
+                    <td>Contraseña</td>
+                    <td><input type="password" class="form-control" id="password" />
+                    <td>Confirmar Contraseña</td>
+                    <td><input type="password" class="form-control" id="comfirmation_password" /></td>
+
+
+                </tr>
+                <tr>
+                    <td>Sexo</td>
+                    <td>
+                        <select class="form-control" id="sexo">
+                            <option>Femenino</option>
+                            <option>Masculino</option>
+                        </select>
+
+                    <td>Correo Electrónico</td>
+                    <td><input type="text" class="form-control" id="correoElectronico" />
+
+                </tr>
+
+                <tr>                    
+                    <td>Teléfono Celular</td>
+                    <td><input type="text" class="numero form-control" id="telefonoCelular" /></td>
+
+                    <td>Teléfono Fijo</td>
+                    <td><input type="text" class="numero form-control"  id="telefonoFijo" /></td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="right">
+                        <input type="submit" value="Registrar" class="btn-primary" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</div>
+<script>
+    $('#dvFechaPedido').datepicker({
+        language: "es",
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        todayHighlight: true
+    });
+
+    $('.numero').keyup(function(){
+        this.value =this.value.replace(/[^0-9\.]/g,'');
+    });
+
+    $('#Formulario').submit(function (evt) {
+        if ($('#numeroDocumento').val().length < 6)            
+        {
+            bootstrap_alert.warning('El número de documento debe tener mínimo 6 dígitos')
+            return false;
+        }
+
+        if ($('#password').val() != $('#comfirmation_password').val() || $('#password').val().length < 2) {
+            bootstrap_alert.warning('Contraseña Incorrecta');
+            return false;
+        }
+    });
+
+    bootstrap_alert = function () { };
+    bootstrap_alert.warning = function (message) {
+        $('#alert_placeholder').
+        html('<div class="alert alert-danger">' +
+        '<a class="close" data-dismiss="alert">x</a><span>'
+        + message + '</span></div>');
+    };
+
+</script>

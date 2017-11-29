@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Crear";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading"> Crear Pedido</div>
+    <div class="panel-body">
+        <div id="alert_placeholder"></div>
+        <form id="Formulario" role="form" action="/Home/About">
+            <table class="table table-striped">
+                <tr>
+
+                    <td>Fecha de entrega:</td>
+                    <td>
+                        <input type="text" class="numero form-control" id="fechaEntrega" />
+                    </td>
+                    <td>Descripción Pedido:</td>
+                    <td>
+                        <input type="text" class="numero form-control" id="descripcionPedido" />
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</div>
+<script>
+    date = new Date()
+    date.setDate(date.getDate() + parseInt(8))
+    $('#fechaEntrega').datepicker({
+        language: "es",
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        todayHighlight: true,
+        startDate: date,
+    });
+
+
+
+
+
+
+</script>

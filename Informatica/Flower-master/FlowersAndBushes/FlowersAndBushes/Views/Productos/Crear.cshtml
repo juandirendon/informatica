@@ -1,0 +1,97 @@
+﻿@model FlowersAndBushes.Models.Producto
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Nuestros Productos</h2>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading"> Registro de Productos</div>
+    <div class="panel-body">
+        <div id="alert_placeholder"></div>
+        <form id="Producto" role="form" method="post" action="/Home/About">
+
+            <table class="table table-striped">
+                <tr>
+                    <td>Nombre</td>
+                    <td>
+                        @Html.TextBoxFor(p => p.Nombre,
+                   new {@class= "form-control nombre",
+                       @maxlength ="20",
+                       @placeholder= "Nombre",
+                       @data_validation="required",
+                       @data_validation_error_msg="Debe ingresar el nombre del producto"
+                       })
+
+
+                    </td>
+                    <td>Aspecto</td>
+                    <td>
+                        <input type="text" class="form-control" id="aspectoProducto" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tipo de hoja</td>
+                    <td>
+                        @Html.DropDownListFor(p => p.TipoHoja.IdTipoHoja,
+                        (IEnumerable<SelectListItem>)ViewBag.TipoHoja,
+                            String.Empty,
+                            new { @class= "form-control"})
+                         
+
+                    <td>Tipo de flores</td>
+                    <td><input type="text" class="form-control" id="tipoFlor" />
+                </tr>
+                <tr></tr>
+
+                <tr>
+                    <td>Temporada de plantacion</td>
+                    <td>
+                        <select class="form-control" id="temporadaPlantacion">
+                            <option>Invierno</option>
+                            <option>Otoño</option>
+                            <option>Verano</option>
+                            <option>Primavera</option>
+
+                        </select>
+                    </td>
+
+                    <td>Temporada de floracion</td>
+                    <td>
+                        <select class="form-control" id="temporadaFloracion">
+                            <option>Invierno</option>
+                            <option>Otoño</option>
+                            <option>Verano</option>
+                            <option>Primavera</option>
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Familia a la que pertenece</td>
+                    <td><input type="text" class="form-control" id="familiaPertenece" />
+                    <td>Origen</td>
+                    <td><input type="text" class="form-control" id="origen" /></td>
+
+                </tr>
+                <tr>
+                    <td>Precio por Unidad</td>
+                    <td>
+                        <input type="text" class="form-control" id="precioUnidad" />
+
+                    <td>Fotografia</td>
+                    <td><input type="text" class="form-control" id="Fotografia" />
+                </tr>
+                <tr>
+                    <td colspan="4" align="right">
+                        <input type="submit" value="Registrar" class="btn-primary" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+
+

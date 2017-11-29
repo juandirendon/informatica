@@ -1,0 +1,93 @@
+﻿@model IEnumerable<FlowersAndBushes.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Aspecto
+        </th>
+        <th>
+            Tipo de Hojas
+        </th>
+        <th>
+            Tipo de Flores
+        </th>
+        <th>
+           Temporada de Plantación
+        </th>
+        <th>
+           Temporada de Floración
+        </th>
+        <th>
+            Familia a la que Pertenece
+        </th>
+        <th>
+           Precio por Unidad
+        </th>
+        <th>
+            Fotografía
+        </th>
+        <th>
+            Abonos
+        </th>
+        <th>
+            Tierras
+        </th>
+        <th>
+            Adornos
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aspecto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoHoja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoFlores)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TemporadaPlantación)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TemporadaFloración)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FamiliaPertenece)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioUnidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fotografía)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abonos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tierras)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adornos)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
