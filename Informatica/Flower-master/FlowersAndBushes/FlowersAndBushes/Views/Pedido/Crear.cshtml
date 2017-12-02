@@ -1,44 +1,53 @@
-﻿
+﻿@model FlowersAndBushes.Models.Pedido
+
 @{
     ViewBag.Title = "Crear";
 }
 
 <div class="panel panel-primary">
     <div class="panel-heading"> Crear Pedido</div>
-    <div class="panel-body">
+    <div class="panel-body" style="padding:0;">
         <div id="alert_placeholder"></div>
-        <form id="Formulario" role="form" action="/Home/About">
-            <table class="table table-striped">
+        @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { @id = "Formulario", role = "form" }))
+        {
+            <table class="table table-striped" style="margin:0;">
                 <tr>
-
                     <td>Fecha de entrega:</td>
                     <td>
-                        <input type="text" class="numero form-control" id="fechaEntrega" />
+                        @Html.TextBoxFor(m => m.fecha, new { @class = "numero form-control", @id = "fechaEntrega" })
                     </td>
-                    <td>Descripción Pedido:</td>
+                    <td>DImensiones del Jardín:</td>
                     <td>
-                        <input type="text" class="numero form-control" id="descripcionPedido" />
+                        @Html.TextBoxFor(m => m.dimensionesJardin, new { @class = "numero form-control", @id = "descripcionPedido" })
+                    </td>
+                    <td>Presupuesto:</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.presupuesto, new { @class = "numero form-control", @id = "presupuesto" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>Comentarios:</td>
+                    <td colspan="5">
+                        @Html.TextAreaFor(m => m.comentarios, new { @class = "form-control", @id = "comentarios"})
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="right">
+                        <input type="submit" value="Aceptar" class="btn-primary" />
                     </td>
                 </tr>
 
             </table>
-        </form>
+        }
     </div>
 </div>
 <script>
     date = new Date()
-    date.setDate(date.getDate() + parseInt(8))
     $('#fechaEntrega').datepicker({
         language: "es",
         autoclose: true,
-        format: "dd/mm/yyyy",
+        format: "yyyymmdd",
         todayHighlight: true,
         startDate: date,
     });
-
-
-
-
-
-
 </script>

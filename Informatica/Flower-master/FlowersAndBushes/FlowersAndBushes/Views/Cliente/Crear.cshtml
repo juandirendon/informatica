@@ -1,6 +1,37 @@
-﻿@{
+﻿@model FlowersAndBushes.Models.Usuario
+
+@{
     ViewBag.Title = "Crear";
     Layout = "";
+
+    List<SelectListItem> tiposDocumentos = new List<SelectListItem>();
+    tiposDocumentos.Add(new SelectListItem
+    {
+        Text = "Cédula de ciudadania",
+        Value = "1"
+    });
+    tiposDocumentos.Add(new SelectListItem
+    {
+        Text = "Tarjeta de identidad",
+        Value = "2"
+    });
+    tiposDocumentos.Add(new SelectListItem
+    {
+        Text = "NIT",
+        Value = "3"
+    });
+
+    List<SelectListItem> sexos = new List<SelectListItem>();
+    sexos.Add(new SelectListItem
+    {
+        Text = "Masculino",
+        Value = "Masculino"
+    });
+    sexos.Add(new SelectListItem
+    {
+        Text = "Femenino",
+        Value = "Femenino"
+    });
 }
 
 @Styles.Render("~/Content/css")
@@ -10,78 +41,76 @@
 <script type="text/javascript" src="~/scripts/bootstrap-datepicker.min.js"> </script>
 <br />
 
-<div class="panel panel-primary">
-    <div class="panel-heading"> Registro de Clientes</div>
-    <div class="panel-body">
-        <div id="alert_placeholder"></div>
+<div class="container body-content">
 
-        <form id= "Formulario" role="form" action="/Home/About">
+    <h2>Registro</h2>
+    <h4>Cree una cuenta nueva.</h4>
+    <hr />
+    <div class="panel panel-primary">
+        <div class="panel-heading"> Información del Cliente</div>
+        <div class="panel-body" style="padding:0;">
+            <div id="alert_placeholder"></div>
+            @using (Html.BeginForm("Create", "Cliente", FormMethod.Post, new { @id = "Formulario", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <table class="table table-striped">
+                    <tr>
+                        <td>Tipo de documento</td>
+                        <td>
+                            @Html.DropDownListFor(m => m.tipoDocumento, tiposDocumentos, new { @class = "form-control" })
+                        </td>
+                        <td>Número de documento</td>
+                        <td>
+                            @Html.TextBoxFor(m => m.numeroDocumento, new { @class = "numero form-control", @id = "numeroDocumento" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Primer nombre</td>
+                        <td>@Html.TextBoxFor(m => m.primerNombre, new { @class = "form-control", @id = "primerNombre" })</td>
+                        <td>Segundo nombre</td>
+                        <td>@Html.TextBoxFor(m => m.segundoNombre, new { @class = "form-control", @id = "segundoNombre" })</td>
+                    </tr>
+                    <tr>
+                        <td>Primer apellido</td>
+                        <td>@Html.TextBoxFor(m => m.primerApellido, new { @class = "form-control", @id = "primerApellido" })</td>
+                        <td>Segundo apellido</td>
+                        <td>@Html.TextBoxFor(m => m.segundoApellido, new { @class = "form-control", @id = "segundoApellido" })</td>
+                    </tr>
+                    <tr>
+                        <td>Contraseña</td>
+                        <td>@Html.TextBoxFor(m => m.contrasena, new { @class = "form-control", @id = "password", @type = "password" })</td>
+                        <td>Confirmar Contraseña</td>
+                        <td><input type="password" class="form-control" id="comfirmation_password" /></td>
 
-            <table class="table table-striped">
-                <tr>
-                    <td>Tipo de documento</td>
-                    <td>
-                        <select class="form-control" id="tipoDocumento">
-                            <option>Cédula de ciudadanía</option>
-                            <option>Tarjeta de identidad</option>
-                            <option>NIT</option>
-                        </select>
-                    </td>
-                    <td>Número de documento</td>
-                    <td>
-                        <input type="text" class="numero form-control"  id="numeroDocumento" />
-                    </td>
+                    </tr>
+                    <tr>
+                        <td>Sexo</td>
+                        <td>
+                            @Html.DropDownListFor(m => m.sexo, sexos, new { @class = "form-control", @id = "sexo" })
+                        </td>
+                        <td>Correo Electrónico</td>
+                        <td>@Html.TextBoxFor(m => m.correo, new { @class = "form-control", @id = "correoElectronico" })</td>
+                    </tr>
+                    <tr>
+                        <td>Teléfono Celular</td>
+                        <td>@Html.TextBoxFor(m => m.celular, new { @class = "form-control", @id = "telefonoCelular" })</td>
 
-                </tr>
-                <tr>
-                    <td>Primer nombre</td>
-                    <td><input type="text" class="form-control" id="primerNombre" />
-                    <td>Segundo nombre</td>
-                    <td><input type="text" class="form-control" id="primerNombre" />
-                </tr>
-                <tr>
-                    <td>Primer apellido</td>
-                    <td><input type="text" class="form-control" id="primerApellido" />
-                    <td>Segundo apellido</td>
-                    <td><input type="text" class="form-control" id="segundoApellido" />
-                </tr>
-                <tr>
-                    <td>Contraseña</td>
-                    <td><input type="password" class="form-control" id="password" />
-                    <td>Confirmar Contraseña</td>
-                    <td><input type="password" class="form-control" id="comfirmation_password" /></td>
-
-
-                </tr>
-                <tr>
-                    <td>Sexo</td>
-                    <td>
-                        <select class="form-control" id="sexo">
-                            <option>Femenino</option>
-                            <option>Masculino</option>
-                        </select>
-
-                    <td>Correo Electrónico</td>
-                    <td><input type="text" class="form-control" id="correoElectronico" />
-
-                </tr>
-
-                <tr>                    
-                    <td>Teléfono Celular</td>
-                    <td><input type="text" class="numero form-control" id="telefonoCelular" /></td>
-
-                    <td>Teléfono Fijo</td>
-                    <td><input type="text" class="numero form-control"  id="telefonoFijo" /></td>
-                </tr>
-                <tr>
-                    <td colspan="4" align="right">
-                        <input type="submit" value="Registrar" class="btn-primary" />
-                    </td>
-                </tr>
-            </table>
-        </form>
-
+                        <td>Teléfono Fijo</td>
+                        <td>@Html.TextBoxFor(m => m.telefono, new { @class = "form-control", @id = "telefonoFijo" })</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="right">
+                            <input type="submit" value="Registrar" class="btn-primary" />
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
     </div>
+    <p>
+        Volver al @Html.ActionLink("Inicio de Sesión", "Login").
+    </p>
 </div>
 <script>
     $('#dvFechaPedido').datepicker({
@@ -91,19 +120,18 @@
         todayHighlight: true
     });
 
-    $('.numero').keyup(function(){
-        this.value =this.value.replace(/[^0-9\.]/g,'');
+    $('.numero').keyup(function () {
+        this.value = this.value.replace(/[^0-9\.]/g, '');
     });
 
     $('#Formulario').submit(function (evt) {
-        if ($('#numeroDocumento').val().length < 6)            
-        {
+        if ($('#numeroDocumento').val().length < 6) {
             bootstrap_alert.warning('El número de documento debe tener mínimo 6 dígitos')
             return false;
         }
 
         if ($('#password').val() != $('#comfirmation_password').val() || $('#password').val().length < 2) {
-            bootstrap_alert.warning('Contraseña Incorrecta');
+            bootstrap_alert.warning('Las contraseñas no coinciden');
             return false;
         }
     });
@@ -111,9 +139,9 @@
     bootstrap_alert = function () { };
     bootstrap_alert.warning = function (message) {
         $('#alert_placeholder').
-        html('<div class="alert alert-danger">' +
-        '<a class="close" data-dismiss="alert">x</a><span>'
-        + message + '</span></div>');
+            html('<div class="alert alert-danger">' +
+            '<a class="close" data-dismiss="alert">x</a><span>'
+            + message + '</span></div>');
     };
 
 </script>

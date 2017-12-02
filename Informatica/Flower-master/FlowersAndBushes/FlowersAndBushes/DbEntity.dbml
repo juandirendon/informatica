@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FlowersAndBushes" Class="DbEntityDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=SANTIAGO-PC\SQLEXPRESS;Initial Catalog=FlowersAndBushes;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FlowersAndBushesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Usuarios" Member="Usuarios">
+    <Type Name="Usuarios">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tipoDocumento" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="numeroDocumento" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="primerNombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="segundoNombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="primerApellido" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="segundoApellido" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="contrasena" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="sexo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="correo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="celular" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pedidos" Member="Pedidos">
+    <Type Name="Pedidos">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fecha" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dimensionesJardin" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="presupuesto" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="comentarios" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="usuario_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Productos" Member="Productos">
+    <Type Name="Productos">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Imagen" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PedidosDetalles" Member="PedidosDetalles">
+    <Type Name="PedidosDetalles">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdPedido" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdProducto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

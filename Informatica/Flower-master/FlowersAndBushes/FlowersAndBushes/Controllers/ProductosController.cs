@@ -13,7 +13,8 @@ namespace FlowersAndBushes.Controllers
         
         public ActionResult Index()
         {
-            List<Producto> productos = contexto.Producto.OrderBy(p => p.IdProducto).Select(p => new Producto()
+            List<Producto> productos = new List<Producto>();
+            /*List<Producto> productos = contexto.Producto.OrderBy(p => p.IdProducto).Select(p => new Producto()
 
             {
                 Nombre = p.Nombre,
@@ -25,7 +26,7 @@ namespace FlowersAndBushes.Controllers
 
                  
             }).ToList();
-
+            */
 
             return View(productos);
 
