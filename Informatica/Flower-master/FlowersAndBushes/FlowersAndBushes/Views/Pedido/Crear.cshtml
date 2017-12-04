@@ -8,7 +8,7 @@
     <div class="panel-heading"> Crear Pedido</div>
     <div class="panel-body" style="padding:0;">
         <div id="alert_placeholder"></div>
-        @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { @id = "Formulario", role = "form" }))
+        @using (Html.BeginForm("Crear", "Pedido", FormMethod.Post, new { @id = "Formulario", role = "form" }))
         {
             <table class="table table-striped" style="margin:0;">
                 <tr>
@@ -32,11 +32,33 @@
                     </td>
                 </tr>
                 <tr>
+                    <td style="background:#428bca !important; color:#fff;">Imágen</td>
+                    <td style="background:#428bca !important; color:#fff;">Tipo</td>
+                    <td style="background:#428bca !important; color:#fff;" colspan="2">Nombre</td>
+                    <td style="background:#428bca !important; color:#fff;">Precio</td>
+                    <td style="background:#428bca !important; color:#fff;">Cantidad</td>
+                </tr>
+                @foreach(Productos p in ViewBag.productos)
+                {
+                    <tr>
+                        <td><img src="@String.Concat("/Content/Images/", @p.Imagen)" height="100" /></td>
+                        @if (p.Tipo == 1) {
+                            <td>Planta</td>
+                        }
+                        else
+                        {
+                            <td>Adorno</td>
+                        }
+                        <td colspan="2">@p.Nombre</td>
+                        <td>$ @String.Format("{0:n}", @p.Precio)</td>
+                        <td>@Html.TextBox(string.Concat("c",p.Id),0,new {  })</td>
+                    </tr>
+                }
+                <tr>
                     <td colspan="6" align="right">
                         <input type="submit" value="Aceptar" class="btn-primary" />
                     </td>
                 </tr>
-
             </table>
         }
     </div>

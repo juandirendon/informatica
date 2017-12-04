@@ -62,17 +62,32 @@
                 <li>
                     @Html.ActionLink("Quienes Somos", "About", "Home") 
                 </li>
+                @if (Convert.ToBoolean(Session["admin"]))
+                {
+                    <li>
+                        @Html.ActionLink("Productos", "Index", "Productos")
+                    </li>
+                }
+                @if (Convert.ToBoolean(Session["admin"]))
+                {
+                    <li>
+                        @Html.ActionLink("Pedidos", "Index", "Pedido")
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Html.ActionLink("Pedidos", "Crear", "Pedido") 
+                    </li>
+                }
+                @if (Convert.ToBoolean(Session["admin"]))
+                {
+                    <li>
+                        @Html.ActionLink("Contactenos", "Contact", "Home") 
+                    </li>
+                }
                 <li>
-                    @Html.ActionLink("Productos", "Index", "Productos") 
-                </li>
-                <li>
-                    @Html.ActionLink("Pedidos", "Crear", "Pedido") 
-                </li>
-                <li>
-                    @Html.ActionLink("Contactenos", "Contact", "Home") 
-                </li>
-                <li>
-                    @Html.ActionLink("Cerrar Sesion", "Login", "Cliente") 
+                    @Html.ActionLink("Cerrar Sesion", "Logout", "Cliente") 
                 </li>
             </ul>
         </nav>

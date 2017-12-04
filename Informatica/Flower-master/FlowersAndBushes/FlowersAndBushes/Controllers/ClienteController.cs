@@ -93,6 +93,7 @@ namespace FlowersAndBushes.Controllers
 
                 // Se almacenan los datos de usuario en sesion
                 Session.Add("login", true);
+                Session.Add("admin", false);
                 Session.Add("id", id);
                 Session.Add("correo", model.correo);
                 Session.Add("contrasena", model.contrasena);
@@ -110,6 +111,12 @@ namespace FlowersAndBushes.Controllers
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            Session.RemoveAll();
+            return Redirect("~/Cliente/Login");
+        }
+
         [HttpPost]
         public ActionResult Login(Usuario model)
         {
@@ -119,6 +126,13 @@ namespace FlowersAndBushes.Controllers
                 // Validar que no esten vacios los campos 
                 if (model.correo != null && model.contrasena != null)
                 {
+                    if (model.correo.Equals("admin") && model.contrasena.Equals("admin"))
+                    {
+                        Session.Add("login", true);
+                        Session.Add("admin", true);
+
+                        return Redirect("~/");
+                    }
 
                     // Obtener contexto para transacciones en base de datos
                     DbEntityDataContext db = new DbEntityDataContext();
@@ -132,6 +146,7 @@ namespace FlowersAndBushes.Controllers
                     {
                         // Se almacenan los datos de usuario en sesion
                         Session.Add("login", true);
+                        Session.Add("admin", false);
                         Session.Add("id", usuario.First().Id);
                         Session.Add("correo", model.correo);
                         Session.Add("contrasena", model.contrasena);

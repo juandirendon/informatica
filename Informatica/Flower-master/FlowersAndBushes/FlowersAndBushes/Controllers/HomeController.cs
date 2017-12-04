@@ -10,7 +10,14 @@ namespace FlowersAndBushes.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["login"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("~/Cliente/Login");
+            }
         }
 
         public ActionResult About()

@@ -1,91 +1,39 @@
-﻿@model IEnumerable<FlowersAndBushes.Models.Producto>
+﻿@using System.Globalization;
+@model IEnumerable<FlowersAndBushes.Models.Producto>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Administración de Productos";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@Html.ActionLink(" + Nuevo", "Crear", null, new { @class = "btn btn-success" })
+<br/><br/>
 <table class="table">
     <tr>
-        <th>
-            Aspecto
-        </th>
-        <th>
-            Tipo de Hojas
-        </th>
-        <th>
-            Tipo de Flores
-        </th>
-        <th>
-           Temporada de Plantación
-        </th>
-        <th>
-           Temporada de Floración
-        </th>
-        <th>
-            Familia a la que Pertenece
-        </th>
-        <th>
-           Precio por Unidad
-        </th>
-        <th>
-            Fotografía
-        </th>
-        <th>
-            Abonos
-        </th>
-        <th>
-            Tierras
-        </th>
-        <th>
-            Adornos
-        </th>
+        <th>Tipo</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Imágen</th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        @if(@item.Tipo == 1)
+        {
+            <td>Planta</td>
+        }
+        else
+        {
+            <td>Adorno</td>
+        }
+        <td>@item.Nombre</td>
+        <td>$ @String.Format("{0:n}", @item.Precio)</td>
+        <td><img src="@String.Concat("/Content/Images/", @item.Imagen)" width="150" /></td>
         <td>
-            @Html.DisplayFor(modelItem => item.Aspecto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoHoja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoFlores)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TemporadaPlantación)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TemporadaFloración)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FamiliaPertenece)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrecioUnidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fotografía)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abonos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tierras)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adornos)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id}) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

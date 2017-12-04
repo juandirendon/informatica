@@ -1,6 +1,6 @@
 ﻿@model FlowersAndBushes.Models.Producto
 @{
-    ViewBag.Title = "Nuevo Producto";
+    ViewBag.Title = "Editar Producto";
 
     List<SelectListItem> tipos = new List<SelectListItem>();
     tipos.Add(new SelectListItem
@@ -14,44 +14,46 @@
         Value = "2"
     });
 }
-
 <h2>@ViewBag.Title</h2>
 <div class="panel panel-primary">
     <div class="panel-heading"> Registro de Productos</div>
     <div class="panel-body" style="padding: 0;">
         <div id="alert_placeholder"></div>
-        @using (Html.BeginForm("Crear", "Productos", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Producto", role = "form" }))
+        @using (Html.BeginForm("Edit", "Productos", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Producto", role = "form" }))
         {
             <table class="table table-striped" style="margin:0;">
                 <tr>
                     <td>Nombre</td>
                     <td>
-                        @Html.TextBoxFor(p => p.Nombre, new {
-                           @class = "form-control nombre",
-                           @data_validation = "required",
-                           @data_validation_error_msg = "Debe ingresar el nombre del producto"
-                       })
+                        @Html.TextBoxFor(p => p.Nombre, new
+                   {
+                       @class = "form-control nombre",
+                       @data_validation = "required",
+                       @data_validation_error_msg = "Debe ingresar el nombre del producto"
+                   })
                     </td>
                     <td>Precio</td>
                     <td>
-                        @Html.TextBoxFor(p => p.Precio, new {
-                           @class = "form-control",
-                           @id = "aspectoProducto",
-                           @data_validation = "required",
-                           @data_validation_error_msg = "Debe ingresar el precio del proucto"
-                       })
+                        @Html.TextBoxFor(p => p.Precio, new
+                   {
+                       @class = "form-control",
+                       @id = "aspectoProducto",
+                       @data_validation = "required",
+                       @data_validation_error_msg = "Debe ingresar el precio del proucto"
+                   })
                     </td>
                 </tr>
                 <tr>
                     <td>Tipo</td>
                     <td>
-                        @Html.DropDownListFor(p => p.Tipo, tipos, new {
-                           @class = "form-control",
-                           @id = "tipoProducto"
-                       })
+                        @Html.DropDownListFor(p => p.Tipo, tipos, new
+                   {
+                       @class = "form-control",
+                       @id = "tipoProducto"
+                   })
                     </td>
                     <td>Imágen</td>
-                    <td><input type="file" name="file" value="Seleccionar archivo"/></td>
+                    <td><input type="file" name="file" value="Seleccionar archivo" /></td>
                 </tr>
                 <tr>
                     <td colspan="4" align="right">
@@ -63,6 +65,3 @@
         }
     </div>
 </div>
-
-
-
