@@ -88,7 +88,7 @@ namespace FlowersAndBushes.Controllers
                 }
             }
 
-            return Redirect(Url.Content("~/Pedidos"));
+            return Redirect(Url.Content("~/Pedidos/Crear"));
         }
 
         //
